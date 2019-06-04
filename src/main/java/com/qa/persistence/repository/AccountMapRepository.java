@@ -8,12 +8,12 @@ import java.util.Map;
 import com.qa.persistence.domain.Account;
 import com.qa.util.JSONUtil;
 
-public abstract class AccountMapRepository implements AccountRepository{
+public class AccountMapRepository implements AccountRepository{
 	
 
 	JSONUtil jsonutil = new JSONUtil();
 	
-	Map<Long, Account> accountMap = new HashMap<Long, Account>();
+	Map<Integer, Account> accountMap = new HashMap<Integer, Account>();
 	
 	//You must provide concrete implementation for each of these methods
 	//do not change the method signature
@@ -34,14 +34,14 @@ public abstract class AccountMapRepository implements AccountRepository{
 		return "Created account";
 	}
 
-	public String deleteAccount(Long id) {
+	public String deleteAccount(int id) {
 		accountMap.remove(id);
 		return "Deleted account";
 	}
 
-	public String updateAccount(Long id, String account) {
+	public String updateAccount(int id, String account) {
 		Account newAcc = jsonutil.getObjectForJSON(account, Account.class);
-		accountMap.put(newAcc.getID(), newAcc);
+		accountMap.put(id, newAcc);
 		return "Updated account";
 	}
 

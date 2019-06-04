@@ -23,7 +23,7 @@ public class Account {
 		this.id = counter;
 	}
 	
-	public long getID() {
+	public int getID() {
 		return id;
 	}
 
