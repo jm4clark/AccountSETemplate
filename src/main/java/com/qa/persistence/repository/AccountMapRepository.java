@@ -1,13 +1,19 @@
 package com.qa.persistence.repository;
 
+
+
 import java.util.HashMap;
 import java.util.Map;
 
 import com.qa.persistence.domain.Account;
+import com.qa.util.JSONUtil;
 
-public class AccountMapRepository implements AccountRepository{
+public abstract class AccountMapRepository implements AccountRepository{
 	
-	Map<Integer, Account> accountMap = new HashMap<Integer, Account>();
+
+	JSONUtil jsonutil = new JSONUtil();
+	
+	Map<Long, Account> accountMap = new HashMap<Long, Account>();
 	
 	//You must provide concrete implementation for each of these methods
 	//do not change the method signature
@@ -19,23 +25,24 @@ public class AccountMapRepository implements AccountRepository{
 	//You can use the suggested tests or build your own.
 
 	public String getAllAccounts() {
-		// TODO Auto-generated method stub
-		return null;
+		return accountMap.toString();
 	}
 
 	public String createAccount(String account) {
-		// TODO Auto-generated method stub
-		return null;
+		Account acc = jsonutil.getObjectForJSON(account, Account.class);
+		accountMap.put(acc.getID(), acc);
+		return "Created account";
 	}
 
-	public String deleteAccount(int accountNumber) {
-		// TODO Auto-generated method stub
-		return null;
+	public String deleteAccount(Long id) {
+		accountMap.remove(id);
+		return "Deleted account";
 	}
 
-	public String updateAccount(int accountNumber, String account) {
-		// TODO Auto-generated method stub
-		return null;
+	public String updateAccount(Long id, String account) {
+		Account newAcc = jsonutil.getObjectForJSON(account, Account.class);
+		accountMap.put(newAcc.getID(), newAcc);
+		return "Updated account";
 	}
 
 }
