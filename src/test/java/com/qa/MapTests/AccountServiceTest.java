@@ -26,7 +26,7 @@ public class AccountServiceTest {
 		Account a = new Account("Dude", "Guy");
 		repo.createAccount(util.getJSONForObject(a));
 
-		assertTrue(repo.getAllAccounts() != null);
+		assertTrue(repo.getAccount(a.getID()) != null);
 	}
 
 	@Test
@@ -51,7 +51,7 @@ public class AccountServiceTest {
 		System.out.println(repo.getAccount(a.getID()));
 		
 		repo.deleteAccount(a.getID());
-		assertTrue(repo.getAccount(a.getID()) == null);
+		assertEquals(null, repo.getAccount(a.getID()));
 	}
 
 	@Test

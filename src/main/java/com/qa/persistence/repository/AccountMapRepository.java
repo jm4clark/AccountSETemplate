@@ -25,7 +25,11 @@ public class AccountMapRepository implements AccountRepository{
 	//You can use the suggested tests or build your own.
 
 	public String getAllAccounts() {
-		return accountMap.toString();
+		String result =  "";
+		for (Account a : accountMap.values()) {
+			result += jsonutil.getJSONForObject(a);
+		}
+		return result;//accountMap.toString();
 	}
 	
 	public String getAccountJSON(int id) {
