@@ -8,30 +8,31 @@ public class Account {
 	private static int counter = 0;
 	private int id;
 	// An Account Number
-	private int accNum;
+	private String accNum;
 	// A First Name
 	private String firstName;
 	// A last Name
 	private String lastName;
 	
-	public Account(int accNum, String firstName, String lastName) {
-		this.accNum = accNum;
+	public Account(String firstName, String lastName) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		
 		counter++;
 		this.id = counter;
+
+		this.accNum = firstName.substring(0, 1) + lastName.substring(0, 1) + this.id;
 	}
 	
 	public int getID() {
 		return id;
 	}
 
-	public int getAccNum() {
+	public String getAccNum() {
 		return accNum;
 	}
 
-	public void setAccNum(int accNum) {
+	public void setAccNum(String accNum) {
 		this.accNum = accNum;
 	}
 

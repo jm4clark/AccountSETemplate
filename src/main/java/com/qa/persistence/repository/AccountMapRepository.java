@@ -27,6 +27,14 @@ public class AccountMapRepository implements AccountRepository{
 	public String getAllAccounts() {
 		return accountMap.toString();
 	}
+	
+	public String getAccountJSON(int id) {
+		return jsonutil.getJSONForObject(accountMap.get(id));
+	}
+	
+	public Account getAccount(int id) {
+		return accountMap.get(id);
+	}
 
 	public String createAccount(String account) {
 		Account acc = jsonutil.getObjectForJSON(account, Account.class);
@@ -41,7 +49,7 @@ public class AccountMapRepository implements AccountRepository{
 
 	public String updateAccount(int id, String account) {
 		Account newAcc = jsonutil.getObjectForJSON(account, Account.class);
-		accountMap.put(id, newAcc);
+		accountMap.replace(id, newAcc);
 		return "Updated account";
 	}
 
