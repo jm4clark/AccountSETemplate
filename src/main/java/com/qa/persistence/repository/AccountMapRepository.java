@@ -1,6 +1,8 @@
 package com.qa.persistence.repository;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.qa.persistence.domain.Account;
@@ -35,6 +37,19 @@ public class AccountMapRepository implements AccountRepository {
 
 	public Account getAccount(int id) {
 		return accountMap.get(id);
+	}
+	
+	public List<Account> getAccountsByName(String name){
+		
+		List<Account> listWithNames = new ArrayList<Account>();
+		for(Account a: accountMap.values()) {
+			if(a.getFirstName().equals(name)) {
+				listWithNames.add(a);
+			}
+		}
+		
+		
+		return listWithNames;
 	}
 
 	public String createAccount(String account) {
