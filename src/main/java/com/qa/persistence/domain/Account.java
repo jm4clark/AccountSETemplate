@@ -28,6 +28,10 @@ public class Account {
 		return id;
 	}
 
+	public Account() {
+		super();
+	}
+
 	public String getAccNum() {
 		return accNum;
 	}
