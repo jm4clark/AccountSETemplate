@@ -14,7 +14,7 @@ import javax.transaction.Transactional.TxType;
 public class AccountDBRepo {
 
 	private JSONUtil util = new JSONUtil();
-	
+
 	@PersistenceContext(unitName = "primary")
 	private EntityManager manager;
 
@@ -22,23 +22,40 @@ public class AccountDBRepo {
 		return manager.createQuery("SELECT a FROM Account a", Account.class).getResultList();
 	}
 
-	@Transactional(TxType.REQUIRED)
 	public Account findAccount(int id) {
+
 		return manager.find(Account.class, id);
 	}
 
 	@Transactional(TxType.REQUIRED)
 	public String createAccount(String account) {
 		Account acc = util.getObjectForJSON(account, Account.class);
+		manager.getTransaction().begin();
 		manager.persist(acc);
+		manager.getTransaction().commit();
 		return util.messageToJSON("Created account");
 	}
 
 	@Transactional(TxType.REQUIRED)
+	public String updateAccount(int id, String account) {
+		Account acc = util.getObjectForJSON(account, Account.class);
+		Account old = findAccount(id);
+		manager.detach(old);
+		old = acc;
+		manager.getTransaction().begin();
+		manager.merge(old);
+		manager.getTransaction().commit();
+
+		return util.messageToJSON("Updated account");
+	}
+
+	@Transactional(TxType.REQUIRED)
 	public String deleteAccount(int id) {
-		
+
 		if (manager.find(Account.class, id) != null) {
+			manager.getTransaction().begin();
 			manager.remove(id);
+			manager.getTransaction().commit();
 			return util.messageToJSON("Deleted account");
 		}
 		return util.messageToJSON("No account to delete");
