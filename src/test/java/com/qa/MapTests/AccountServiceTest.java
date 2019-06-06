@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.qa.persistence.domain.Account;
@@ -17,6 +18,7 @@ public class AccountServiceTest {
 
 	Account acc1;
 	Account acc2;
+	Account acc3;
 	Account acc1New;
 
 	@Before
@@ -28,6 +30,8 @@ public class AccountServiceTest {
 		acc2 = new Account("Mad", "Lad");
 
 		acc1New = new Account("Bad", "Dad");
+		
+		acc3 = new Account("Mad", "Sad");
 	}
 
 	@Test
@@ -90,34 +94,39 @@ public class AccountServiceTest {
 		assertEquals("No account to delete", repo.deleteAccount(3));
 	}
 
-//	@Test
-//	public void jsonStringToAccountConversionTest() {
-//		// testing JSONUtil
-//		fail("TODO");
-//	}
-//
-//	@Test
-//	public void accountConversionToJSONTest() {
-//		// testing JSONUtil
-//		fail("TODO");
-//	}
-//
-//	@Test
-//	public void getCountForFirstNamesInAccountWhenZeroOccurances() {
-//		// For a later piece of functionality
-//		fail("TODO");
-//	}
-//
-//	@Test
-//	public void getCountForFirstNamesInAccountWhenOne() {
-//		// For a later piece of functionality
-//		fail("TODO");
-//	}
-//
-//	@Test
-//	public void getCountForFirstNamesInAccountWhenTwo() {
-//		// For a later piece of functionality
-//		fail("TODO");
-//	}
+	@Test
+	@Ignore
+	public void jsonStringToAccountConversionTest() {
+		assertEquals(acc1,util.getObjectForJSON(util.getJSONForObject(acc1), Account.class));
+	}
+
+	@Test
+	@Ignore
+	public void accountConversionToJSONTest() {
+		assertEquals(acc1,util.getObjectForJSON(util.getJSONForObject(acc1), Account.class));
+	}
+
+	@Test
+	public void getCountForFirstNamesInAccountWhenZeroOccurances() {
+		repo.createAccount(util.getJSONForObject(acc1));
+		
+		assertEquals(0, repo.getAccountsByName("Jim").size());
+	}
+
+	@Test
+	public void getCountForFirstNamesInAccountWhenOne() {
+		
+		repo.createAccount(util.getJSONForObject(acc1));
+		
+		assertEquals(1, repo.getAccountsByName(acc1.getFirstName()).size());
+	}
+
+	@Test
+	public void getCountForFirstNamesInAccountWhenTwo() {
+		repo.createAccount(util.getJSONForObject(acc2));
+		repo.createAccount(util.getJSONForObject(acc3));
+		
+		assertEquals(2, repo.getAccountsByName("Mad").size());
+	}
 
 }

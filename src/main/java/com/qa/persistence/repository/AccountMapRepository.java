@@ -47,10 +47,7 @@ public class AccountMapRepository implements AccountRepository {
 				listWithNames.add(a);
 			}
 		}
-		
-		//return accountMap.stream().filter
-		
-		
+				
 		return listWithNames;
 	}
 
