@@ -23,6 +23,10 @@ public class JSONUtil {
 			return null;
 		}
 	}
+	
+	public String messageToJSON(String s) {
+		return "{\"message\": \"" + s + "\"}";
+	}
 
 	public <T> T getObjectForJSON(String jsonString, Class<T> clazz) {
 
