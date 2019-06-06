@@ -1,25 +1,29 @@
 
 package com.qa.persistence.domain;
 
+import javax.persistence.*;
+
+@Entity
 public class Account {
 
 	// This class needs to have:
 	// An id
-	private static int counter = 0;
+	@Id @GeneratedValue (strategy=GenerationType.AUTO)
 	private int id;
 	// An Account Number
+	@Column (length = 10)
 	private String accNum;
 	// A First Name
+	@Column (length = 50)
 	private String firstName;
 	// A last Name
+	@Column (length = 50)
 	private String lastName;
 	
 	public Account(String firstName, String lastName) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		
-		counter++;
-		this.id = counter;
 
 		this.accNum = firstName.substring(0, 1) + lastName.substring(0, 1) + this.id;
 	}
