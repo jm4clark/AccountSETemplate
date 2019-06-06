@@ -9,6 +9,10 @@ public class AccountServiceImp implements AccountService{
 	@Inject
 	private AccountRepository repo;
 	
+	public void setRepo(AccountRepository repo) {
+		this.repo = repo;
+	}
+	
 	@Override
 	public String getAllAccounts() {
 		return repo.getAllAccounts();

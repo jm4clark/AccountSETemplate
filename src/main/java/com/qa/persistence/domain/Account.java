@@ -11,8 +11,6 @@ public class Account {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	
-	private static int counter = 0;
 	// An Account Number
 	@Column(length = 10)
 	private String accNum;
@@ -26,9 +24,8 @@ public class Account {
 	public Account(String firstName, String lastName) {
 		this.firstName = firstName;
 		this.lastName = lastName;
-		counter++;
-		this.id = counter;
-		this.accNum = firstName.substring(0, 1) + lastName.substring(0, 1) + this.id;
+		
+		//this.accNum = firstName.substring(0, 1) + lastName.substring(0, 1) + this.id;
 	}
 
 	public int getID() {

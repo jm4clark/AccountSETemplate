@@ -22,7 +22,7 @@ public class AccountDBRepo implements AccountRepository{
 	private EntityManager manager;
 
 	public String getAllAccounts() {
-		return manager.createQuery("SELECT a FROM Account a", Account.class).getResultList().toString();
+		return util.getJSONForObject(manager.createQuery("SELECT a FROM Account a", Account.class).getResultList());
 	}
 
 	public Account findAccount(int id) {
