@@ -5,14 +5,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.enterprise.inject.Alternative;
+import javax.inject.Inject;
+
 import com.qa.persistence.domain.Account;
 import com.qa.util.JSONUtil;
 
+@Alternative
 public class AccountMapRepository implements AccountRepository {
 
-	JSONUtil jsonutil = new JSONUtil();
-
-	Map<Integer, Account> accountMap = new HashMap<Integer, Account>();
+	@Inject
+	JSONUtil jsonutil;
+	
+	Map<Integer, Account> accountMap = new HashMap<>();
 
 	// You must provide concrete implementation for each of these methods
 	// do not change the method signature
@@ -41,7 +46,7 @@ public class AccountMapRepository implements AccountRepository {
 	
 	public List<Account> getAccountsByName(String name){
 		
-		List<Account> listWithNames = new ArrayList<Account>();
+		List<Account> listWithNames = new ArrayList<>();
 		for(Account a: accountMap.values()) {
 			if(a.getFirstName().equals(name)) {
 				listWithNames.add(a);

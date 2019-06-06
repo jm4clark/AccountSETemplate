@@ -47,6 +47,8 @@ public class AccountServiceTest {
 		repo.createAccount(util.getJSONForObject(acc1));
 		repo.createAccount(util.getJSONForObject(acc2));
 		
+		System.out.println(acc1.getID() + repo.getAccount(acc1.getID()).getID());
+		
 		assertEquals(acc1.getFirstName(), repo.getAccount(acc1.getID()).getFirstName());
 		assertEquals(acc2.getFirstName(), repo.getAccount(acc2.getID()).getFirstName());
 	}
@@ -125,6 +127,8 @@ public class AccountServiceTest {
 	public void getCountForFirstNamesInAccountWhenTwo() {
 		repo.createAccount(util.getJSONForObject(acc2));
 		repo.createAccount(util.getJSONForObject(acc3));
+		
+		
 		
 		assertEquals(2, repo.getAccountsByName("Mad").size());
 	}

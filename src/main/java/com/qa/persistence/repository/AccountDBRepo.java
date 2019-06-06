@@ -3,23 +3,26 @@ package com.qa.persistence.repository;
 import com.qa.persistence.domain.Account;
 import com.qa.util.*;
 
-import java.util.List;
 
+import javax.enterprise.inject.Default;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.transaction.Transactional.TxType;
 
+@Default
 @Transactional(TxType.SUPPORTS)
-public class AccountDBRepo {
+public class AccountDBRepo implements AccountRepository{
 
-	private JSONUtil util = new JSONUtil();
+	@Inject
+	private JSONUtil util;
 
 	@PersistenceContext(unitName = "primary")
 	private EntityManager manager;
 
-	public List<Account> getAllAccounts() {
-		return manager.createQuery("SELECT a FROM Account a", Account.class).getResultList();
+	public String getAllAccounts() {
+		return manager.createQuery("SELECT a FROM Account a", Account.class).getResultList().toString();
 	}
 
 	public Account findAccount(int id) {
