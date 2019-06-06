@@ -47,8 +47,7 @@ public class AccountMapRepository implements AccountRepository {
 				listWithNames.add(a);
 			}
 		}
-		
-		
+				
 		return listWithNames;
 	}
 
