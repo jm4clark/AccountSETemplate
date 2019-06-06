@@ -90,34 +90,34 @@ public class AccountServiceTest {
 		assertEquals("No account to delete", repo.deleteAccount(3));
 	}
 
-	@Test
-	public void jsonStringToAccountConversionTest() {
-		// testing JSONUtil
-		fail("TODO");
-	}
-
-	@Test
-	public void accountConversionToJSONTest() {
-		// testing JSONUtil
-		fail("TODO");
-	}
-
-	@Test
-	public void getCountForFirstNamesInAccountWhenZeroOccurances() {
-		// For a later piece of functionality
-		fail("TODO");
-	}
-
-	@Test
-	public void getCountForFirstNamesInAccountWhenOne() {
-		// For a later piece of functionality
-		fail("TODO");
-	}
-
-	@Test
-	public void getCountForFirstNamesInAccountWhenTwo() {
-		// For a later piece of functionality
-		fail("TODO");
-	}
+//	@Test
+//	public void jsonStringToAccountConversionTest() {
+//		// testing JSONUtil
+//		fail("TODO");
+//	}
+//
+//	@Test
+//	public void accountConversionToJSONTest() {
+//		// testing JSONUtil
+//		fail("TODO");
+//	}
+//
+//	@Test
+//	public void getCountForFirstNamesInAccountWhenZeroOccurances() {
+//		// For a later piece of functionality
+//		fail("TODO");
+//	}
+//
+//	@Test
+//	public void getCountForFirstNamesInAccountWhenOne() {
+//		// For a later piece of functionality
+//		fail("TODO");
+//	}
+//
+//	@Test
+//	public void getCountForFirstNamesInAccountWhenTwo() {
+//		// For a later piece of functionality
+//		fail("TODO");
+//	}
 
 }

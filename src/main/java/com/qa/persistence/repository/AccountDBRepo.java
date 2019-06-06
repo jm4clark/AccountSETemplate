@@ -23,7 +23,6 @@ public class AccountDBRepo {
 	}
 
 	public Account findAccount(int id) {
-
 		return manager.find(Account.class, id);
 	}
 
@@ -39,10 +38,10 @@ public class AccountDBRepo {
 	@Transactional(TxType.REQUIRED)
 	public String updateAccount(int id, String account) {
 		Account acc = util.getObjectForJSON(account, Account.class);
-		Account old = findAccount(id);
+		Account old = findAccount(id);		
+		manager.getTransaction().begin();
 		manager.detach(old);
 		old = acc;
-		manager.getTransaction().begin();
 		manager.merge(old);
 		manager.getTransaction().commit();
 
